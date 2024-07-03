@@ -27,5 +27,8 @@ app.use('/api/v1/users',userRouter)
 app.use('/api/v1/city',cityRouter)
 app.use('/api/v1/state',stateRouter)
 app.use('/api/v1/station',stationRouter)
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
 module.exports =  { app }
