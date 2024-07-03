@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
+    "start1": "node index.js",
     "nodemon": "nodemon src/index.js"
   },
   "author": "Ankit",
