@@ -28,7 +28,7 @@ app.use('/api/v1/city',cityRouter)
 app.use('/api/v1/state',stateRouter)
 app.use('/api/v1/station',stationRouter)
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Hello Worlds!')
 })
 
 module.exports =  { app }
