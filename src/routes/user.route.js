@@ -17,7 +17,7 @@ router.put('/update', verifyJwt, (req, res, next)=>{
         maxCount:1
     }
 ])(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
+    if (err) {
         // A Multer error occurred when uploading.
         console.error('Multer error:', err);
         return res.status(500).json({ error: 'File upload failed.' });
