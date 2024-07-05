@@ -13,6 +13,6 @@ connectDB()
             console.log('Server is running at port  : ', process.env.PORT || 8000)
         })
     })
-    .catch(() => {
-        console.log('Mongoose DB connection failed !!');
+    .catch((error) => {
+        console.log('Mongoose DB connection failed !! error - ', error);
     })
