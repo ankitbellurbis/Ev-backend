@@ -148,7 +148,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 const updateAccountDetail = asyncHandler(async (req, res) => {
     try {
-        console.log('inside update method')
+        console.log('inside update method', req.files, req.files?.avatar[0]?.path)
 
         const { fullName, dateOfBirth, state, city } = req.body;
         if (!fullName || !dateOfBirth || !state || !city) return res.status(400).json(new ApiResponse(400, null, 'All fields are required'));
