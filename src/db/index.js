@@ -3,10 +3,7 @@ const {DB_NAME} =  require('../constant.js')
 
 const connectDB = async()=>{
     try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`,{
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
         console.log(`\n mongo db connected !! DB HOST : ${connectionInstance.connection.host}`);
         return true;
     } catch (error) {

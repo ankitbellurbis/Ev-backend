@@ -148,10 +148,10 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 const updateAccountDetail = asyncHandler(async (req, res) => {
     try {
+        console.log('inside update method')
 
         const { fullName, dateOfBirth, state, city } = req.body;
         if (!fullName || !dateOfBirth || !state || !city) return res.status(400).json(new ApiResponse(400, null, 'All fields are required'));
-        console.log('150 is working..', req.files)
 
         const avatarLocalPath = req.files?.avatar[0]?.path;
 
