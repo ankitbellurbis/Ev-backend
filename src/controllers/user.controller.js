@@ -2,7 +2,8 @@ const { asyncHandler } = require('../utils/asyncHandler.js')
 const User = require('../models/User.model.js');
 const { uploadOnCloudinary } = require('../utils/cloudinary.js');
 const { ApiResponse } = require('../utils/ApiResponse.js');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const sendEmail = require('../middlewares/mail.middleware.js');
 
 const options = {
     httpOnly: true,
@@ -45,6 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
             "-password -refreshToken"
         )
         if (!userData) return res.status(500).json(new ApiResponse(500, null, 'something went wrong during registration'))
+        await sendEmail(email, 'Welcome to Charger Ev', 'Congratulations, you are successfully login to Charger Ev Application. hope you enjoy this application', 'Welcome to Charger Ev')
 
         return res.status(201).json(
             new ApiResponse(201, userData, 'User register successfully')
@@ -64,7 +66,7 @@ const loginUser = asyncHandler(async (req, res) => {
         if (!userData) return res.status(404).json(new ApiResponse(404, null, 'user does not exist'))
 
         const isPasswordCorrect = await userData.validPassword(password);
-        if (!isPasswordCorrect) return res.status(401).json(new ApiResponse(401, null, 'Incorrect password'))
+        if (!isPasswordCorrect) return res.status(400).json(new ApiResponse(400, null, 'Incorrect password'))
         let { accessToken, refreshToken } = await generateAccessTokenAndRefreshToken(userData._id);
         const loggedInUser = await User.findById(userData?._id).select("-password -refreshToken");
 
